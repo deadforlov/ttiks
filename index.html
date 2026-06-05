@@ -7,10 +7,6 @@
     <style>
         /* НАСТРОЙКА ТВОЕГО ФОНА */
         :root {
-            /* 👉 НАСТРОЙ ФОН ТУТ:
-              Вариант 1: Оставь url('background.png'), если закинул файл background.png на GitHub.
-              Вариант 2: Вставь ссылку из интернета, например: url('https://ссылка_на_картинку.jpg')
-            */
             --my-background: url('https://github.com/deadforlov/ttiks/blob/main/Code_Generated_Image%20(1).png?raw=true');
         }
 
@@ -110,7 +106,7 @@
             height: 130px; 
             border-radius: 50%; 
             object-fit: cover; 
-            flex-shrink: 0; /* Запрещает картинке сжиматься и искажаться */
+            flex-shrink: 0; 
             border: 3px solid #00aff0; 
             box-shadow: 0 0 20px rgba(0, 175, 240, 0.6);
             margin-bottom: 25px;
@@ -152,6 +148,7 @@
             transition: all 0.3s ease;
             animation: pulse 2.2s infinite; 
             width: 100%; 
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -166,7 +163,7 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
         }
 
-        /* ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (Все 3 на одном экране, без искажений) */
+        /* ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ */
         @media (max-width: 480px) {
             body {
                 padding: 15px 12px;
@@ -191,10 +188,9 @@
                 border-radius: 18px;
             }
 
-            /* Ряд для мобилки: аватарка слева, текст справа */
             .card-top {
                 flex-direction: row; 
-                align-items: center; /* Центрирует аватарку по вертикали относительно текста и убирает растягивание */
+                align-items: center; 
                 text-align: left;
                 gap: 15px;
                 margin-bottom: 10px;
@@ -202,11 +198,10 @@
                 justify-content: flex-start;
             }
 
-            /* Жесткая фиксация идеального круга на мобильном для ВСЕХ фото */
             .profile-img {
                 width: 65px !important; 
                 height: 65px !important;
-                flex: 0 0 65px; /* Запрещает флексу сжимать или растягивать круг */
+                flex: 0 0 65px; 
                 margin-bottom: 0; 
                 border-width: 2px;
                 box-shadow: 0 0 12px rgba(0, 175, 240, 0.5);
@@ -246,7 +241,7 @@
                     <p class="bait-text">I'm feeling naughty tonight. Unlock my private secrets... 🔞</p>
                 </div>
             </div>
-            <a href="https://onlyfans.com/ava_doll/c336" target="_blank" class="cta-button">ENTER MY ROOM 🔞</a>
+            <a href="https://onlyfans.com/ava_doll/c336" class="cta-button" onclick="openExternal(event, this.href)">ENTER MY ROOM 🔞</a>
         </div>
 
         <div class="card">
@@ -257,7 +252,7 @@
                     <p class="bait-text">Good girls go to heaven, but I can take you somewhere better... 🤫</p>
                 </div>
             </div>
-            <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">WATCH UNCENSORED 💦</a>
+            <a href="https://onlyfans.com/architect.mari/c770" class="cta-button" onclick="openExternal(event, this.href)">WATCH UNCENSORED 💦</a>
         </div>
 
         <div class="card">
@@ -268,10 +263,59 @@
                     <p class="bait-text">I saved the best content just for you. Waiting in my DMs right now 💌</p>
                 </div>
             </div>
-            <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">TEXT ME PRIVATELY 💌</a>
+            <a href="https://onlyfans.com/miss.andrea/c1897" class="cta-button" onclick="openExternal(event, this.href)">TEXT ME PRIVATELY 💌</a>
         </div>
 
     </div>
+
+    <script>
+        function openExternal(event, url) {
+            // Останавливаем стандартный переход по ссылке
+            event.preventDefault();
+
+            // Убираем https:// для формирования intent-ссылки
+            var targetDomainAndPath = url.replace(/^https?:\/\//, '');
+            var fullUrl = url;
+            
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isInstagram = (ua.indexOf('Instagram') > -1);
+            var isAndroid = /android/i.test(ua);
+            var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+
+            if (isInstagram) {
+                if (isAndroid) {
+                    // Агрессивный редирект для Android через Intent (вызов Chrome)
+                    var intentUrl = "intent://" + targetDomainAndPath + "#Intent;scheme=https;package=com.android.chrome;end;";
+                    window.location.replace(intentUrl);
+                    
+                    // Если Chrome не установлен, через полсекунды кидаем по обычной ссылке
+                    setTimeout(function() {
+                        window.location.replace(fullUrl);
+                    }, 500);
+                } 
+                else if (isIOS) {
+                    // Метод для iOS: Динамическое создание и клик по скрытому элементу <a>
+                    try {
+                        var a = document.createElement('a');
+                        a.href = fullUrl;
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        var e = document.createEvent('MouseEvents');
+                        e.initEvent('click', true, true);
+                        a.dispatchEvent(e);
+                    } catch (err) {}
+
+                    // Запасной метод для iOS
+                    setTimeout(function() {
+                        window.location.href = fullUrl;
+                    }, 300);
+                }
+            } else {
+                // Если открыли не в Instagram (уже в браузере) - обычный редирект
+                window.location.href = fullUrl;
+            }
+        }
+    </script>
 
 </body>
 </html>
