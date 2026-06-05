@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive VIP Access</title>
     <style>
+        /* НАСТРОЙКА ТВОЕГО ФОНА */
+        :root {
+            /* 👉 НАСТРОЙ ФОН ТУТ:
+              Вариант 1: Оставь url('background.png'), если закинул файл background.png на GitHub.
+              Вариант 2: Вставь ссылку из интернета, например: url('https://ссылка_на_картинку.jpg')
+            */
+            --my-background: url('https://github.com/deadforlov/ttiks/blob/main/Code_Generated_Image%20(1).png?raw=true');
+        }
+
         /* Сброс стандартных отступов */
         * {
             margin: 0;
@@ -14,8 +23,7 @@
         }
 
         body {
-            /* Подключение твоего стильного фона */
-            background-image: url('background.png');
+            background-image: var(--my-background);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -25,13 +33,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Центрируем всё строго по центру экрана */
+            justify-content: center; 
             padding: 40px 20px;
             position: relative;
             z-index: 1;
         }
 
-        /* Затемняющий слой поверх фона для идеальной читаемости */
+        /* Затемняющий слой поверх фона */
         body::before {
             content: "";
             position: absolute;
@@ -64,7 +72,7 @@
             max-width: 1100px;
         }
 
-        /* Стильная карточка с эффектом матового стекла (Glassmorphism) */
+        /* Стильная карточка (Glassmorphism) */
         .card {
             background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(12px);
@@ -81,27 +89,28 @@
             align-items: center;
         }
 
-        /* На ПК структура внутри карточки идет сверху вниз */
+        /* Структура внутри карточки */
         .card-top {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            width: 100%;
         }
 
-        /* Эффект при наведении мышки (на ПК) */
         .card:hover {
             transform: translateY(-12px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
             border: 1px solid rgba(255, 0, 127, 0.5);
         }
 
-        /* Аватарка девушки с неоновым OnlyFans-голубым свечением */
+        /* Аватарка девушки (Настройка для ПК) */
         .profile-img {
             width: 130px; 
             height: 130px; 
             border-radius: 50%; 
             object-fit: cover; 
+            flex-shrink: 0; /* Запрещает картинке сжиматься и искажаться */
             border: 3px solid #00aff0; 
             box-shadow: 0 0 20px rgba(0, 175, 240, 0.6);
             margin-bottom: 25px;
@@ -127,7 +136,7 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Ссылки-кнопки */
+        /* Кнопки */
         .cta-button {
             display: block;
             text-decoration: none;
@@ -157,9 +166,7 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
         }
 
-        /* УЛЬТРА-ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ:
-          Все 3 девушки видны СРАЗУ на одном экране, крупные элементы, сочные кнопки, без свайпов!
-        */
+        /* ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (Все 3 на одном экране, без искажений) */
         @media (max-width: 480px) {
             body {
                 padding: 15px 12px;
@@ -173,20 +180,21 @@
             }
 
             .cards-container {
-                flex-direction: column; /* Карточки выстраиваются сверху вниз */
-                gap: 10px; /* Минимальный зазор для экономии места */
+                flex-direction: column; 
+                gap: 10px; 
                 width: 100%;
             }
 
             .card {
-                max-width: 100%; /* Карточка растягивается на всю ширину экрана смартфона */
-                padding: 12px 15px; /* Компактные внутренние отступы */
+                max-width: 100%; 
+                padding: 12px 15px; 
                 border-radius: 18px;
             }
 
-            /* Перестраиваем аватарку и текст в один горизонтальный ряд на мобилках */
+            /* Ряд для мобилки: аватарка слева, текст справа */
             .card-top {
                 flex-direction: row; 
+                align-items: center; /* Центрирует аватарку по вертикали относительно текста и убирает растягивание */
                 text-align: left;
                 gap: 15px;
                 margin-bottom: 10px;
@@ -194,10 +202,12 @@
                 justify-content: flex-start;
             }
 
+            /* Жесткая фиксация идеального круга на мобильном для ВСЕХ фото */
             .profile-img {
-                width: 65px; /* Идеальный крупный размер фото, который не жмет экран */
-                height: 65px;
-                margin-bottom: 0; /* Убираем нижний отступ */
+                width: 65px !important; 
+                height: 65px !important;
+                flex: 0 0 65px; /* Запрещает флексу сжимать или растягивать круг */
+                margin-bottom: 0; 
                 border-width: 2px;
                 box-shadow: 0 0 12px rgba(0, 175, 240, 0.5);
             }
@@ -209,13 +219,13 @@
 
             .bait-text {
                 font-size: 0.8rem;
-                min-height: auto; /* Убираем пустые пространства */
+                min-height: auto; 
                 margin-bottom: 0;
                 line-height: 1.2;
             }
 
             .cta-button {
-                padding: 12px 15px; /* Жирная, удобная кнопка во всю ширину */
+                padding: 12px 15px; 
                 font-size: 0.85rem;
                 letter-spacing: 0.5px;
             }
