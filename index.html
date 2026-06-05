@@ -3,113 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="2; url=https://smikit.top/click?o=2&a=3126&aff_param1=twobuttons">
-    <title>TikTok</title>
+    <title>Exclusive VIP Access</title>
     <style>
-        /* Reset and Fonts */
+        /* Общие настройки страницы */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            /* Dark sexy background with gradient */
-            background: linear-gradient(135deg, #1a0b1a 0%, #000000 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            /* Темный анимированный градиентный фон */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: white;
-            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
         }
 
-        /* Glassmorphism Container */
-        .container {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Заголовок сайта */
+        h1 {
             text-align: center;
-            padding: 40px;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Контейнер для карточек. Адаптивный: колонка на телефоне, в ряд на ПК */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Карточка девушки (эффект матового стекла) */
+        .card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 50px rgba(220, 20, 60, 0.25); /* Red glow */
-            max-width: 90%;
-            width: 400px;
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        h1 {
-            font-size: 26px;
-            margin-bottom: 10px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         }
 
-        p {
-            color: #ccc;
-            margin-bottom: 30px;
-            font-size: 14px;
-            font-weight: 300;
-        }
-
-        /* Spinner */
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top: 3px solid #ff0055; /* Hot Pink */
+        /* Фото профиля */
+        .profile-img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 25px auto;
+            object-fit: cover;
+            border: 3px solid #ff007f; /* Неоновая обводка */
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+            margin-bottom: 20px;
         }
 
-        /* Call to Action Button */
-        .btn {
+        /* Имя */
+        .name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Байт-текст */
+        .bait-text {
+            font-size: 1rem;
+            color: #dcdcdc;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        /* Кнопка */
+        .cta-button {
             display: inline-block;
             text-decoration: none;
-            background: linear-gradient(45deg, #ff0055, #ff00cc);
             color: white;
-            padding: 16px 45px;
-            border-radius: 50px;
-            font-size: 20px;
+            background: linear-gradient(90deg, #ff007f, #7000ff);
+            padding: 15px 30px;
+            border-radius: 30px;
             font-weight: bold;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 20px rgba(255, 0, 85, 0.3);
-            transition: transform 0.2s, box-shadow 0.2s;
-            animation: pulse 1.5s infinite;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            animation: pulse 2s infinite;
         }
 
-        .btn:hover {
+        .cta-button:hover {
+            background: linear-gradient(90deg, #7000ff, #ff007f);
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 0, 85, 0.6);
         }
 
-        /* Animations */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* Пульсация кнопки для привлечения внимания */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 85, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 85, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 127, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="loader"></div>
-        
-        <h1>Loading Private Content...</h1>
-        <p>If the page does not open automatically:</p>
+    <h1>Choose Your Fantasy</h1>
 
-        <a href="https://sumar.top/click?o=2&a=3126&aff_param1=twobuttons" class="btn">
-            ENTER NOW
-        </a>
+    <div class="cards-container">
+        
+        <!-- ДЕВУШКА 1 -->
+        <div class="card">
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 1 -->
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 1" class="profile-img">
+            <div class="name">Lexi</div>
+            <p class="bait-text">I'm feeling naughty tonight. Unlock my most private secrets and let's play... 🔞</p>
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
+            <a href="#" class="cta-button">Reveal Everything</a>
+        </div>
+
+        <!-- ДЕВУШКА 2 -->
+        <div class="card">
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 2 -->
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 2" class="profile-img">
+            <div class="name">Mia</div>
+            <p class="bait-text">Good girls go to heaven, but I can take you somewhere much better. Don't tell anyone what you see... 🤫</p>
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
+            <a href="#" class="cta-button">Get VIP Access</a>
+        </div>
+
+        <!-- ДЕВУШКА 3 -->
+        <div class="card">
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 3 -->
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 3" class="profile-img">
+            <div class="name">Chloe</div>
+            <p class="bait-text">I saved the best content just for you. Waiting for you in my DMs right now 💌</p>
+            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
+            <a href="#" class="cta-button">Join the Lounge</a>
+        </div>
+
     </div>
 
 </body>
