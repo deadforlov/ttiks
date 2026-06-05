@@ -75,6 +75,10 @@
             max-width: 340px;
             text-align: center;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border 0.3s ease;
+            /* Гарантируем центрирование контента внутри */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Эффект при наведении мышки (на ПК) */
@@ -86,13 +90,14 @@
 
         /* Аватарка девушки с неоновым OnlyFans-голубым свечением */
         .profile-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 130px; /* Фиксированная ширина */
+            height: 130px; /* Фиксированная высота равная ширине */
+            border-radius: 50%; /* Делает круг */
+            object-fit: cover; /* Обрезает фото, чтобы оно не сплющивалось внутри круга */
             border: 3px solid #00aff0; 
             box-shadow: 0 0 20px rgba(0, 175, 240, 0.6);
             margin-bottom: 25px;
+            display: block; /* Убираем артефакты строчных элементов */
         }
 
         /* Имя модели */
@@ -129,6 +134,7 @@
             box-shadow: 0 4px 20px rgba(0, 175, 240, 0.4);
             transition: all 0.3s ease;
             animation: pulse 2.5s infinite;
+            width: 100%; /* Кнопка на всю ширину карточки */
         }
 
         /* Наведение на кнопку */
@@ -157,6 +163,10 @@
             .card {
                 padding: 30px 20px;
             }
+            .profile-img {
+                width: 110px; /* Чуть меньше на мобильных */
+                height: 110px;
+            }
         }
     </style>
 </head>
@@ -166,22 +176,28 @@
 
     <div class="cards-container">
         
+        <!-- Карточка 1 -->
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true">
+            <!-- ДОБАВЛЕН КЛАСС profile-img -->
+            <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true" alt="ava_doll" class="profile-img">
             <div class="name">ava_doll</div>
             <p class="bait-text">I'm feeling naughty tonight. Unlock my most private secrets and let's play... 🔞</p>
             <a href="https://onlyfans.com/ava_doll/c336" target="_blank" class="cta-button">Reveal Everything</a>
         </div>
 
+        <!-- Карточка 2 -->
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true">
+            <!-- ДОБАВЛЕН КЛАСС profile-img -->
+            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true" alt="architect.mari" class="profile-img">
             <div class="name">architect.mari</div>
             <p class="bait-text">Good girls go to heaven, but I can take you somewhere much better. Don't tell anyone what you see... 🤫</p>
             <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">Get VIP Access</a>
         </div>
 
+        <!-- Карточка 3 -->
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true">
+            <!-- ДОБАВЛЕН КЛАСС profile-img -->
+            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true" alt="miss.andrea" class="profile-img">
             <div class="name">miss.andrea</div>
             <p class="bait-text">I saved the best content just for you. Waiting for you in my DMs right now 💌</p>
             <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">Join the Lounge</a>
