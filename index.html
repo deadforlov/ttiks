@@ -25,7 +25,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 50px 20px;
+            justify-content: center; /* Центрируем контент по вертикали, если есть место */
+            padding: 40px 20px;
             position: relative;
             z-index: 1;
         }
@@ -38,29 +39,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.55); /* Корректируй прозрачность тут (0.55 = 55%) */
+            background: rgba(0, 0, 0, 0.6); /* Чуть затемнили для сочности неонового свечения */
             z-index: -1;
         }
 
         /* Главный заголовок сайта */
         h1 {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+            font-size: 2.4rem;
+            margin-bottom: 45px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 15px rgba(0, 175, 240, 0.6);
+            text-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
             font-weight: 800;
         }
 
-        /* Контейнер для карточек. На ПК — в ряд, на смартфонах — автоматически в колонку */
+        /* Контейнер для карточек. На ПК — в ряд, на смартфонах — тоже в один компактный ряд */
         .cards-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 35px;
+            gap: 30px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1100px;
         }
 
         /* Стильная карточка с эффектом матового стекла (Glassmorphism) */
@@ -72,10 +73,9 @@
             border-radius: 24px;
             padding: 35px 25px;
             width: 100%;
-            max-width: 340px;
+            max-width: 320px;
             text-align: center;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border 0.3s ease;
-            /* Гарантируем центрирование контента внутри */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -85,24 +85,24 @@
         .card:hover {
             transform: translateY(-12px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(0, 175, 240, 0.5);
+            border: 1px solid rgba(255, 0, 127, 0.5);
         }
 
         /* Аватарка девушки с неоновым OnlyFans-голубым свечением */
         .profile-img {
-            width: 130px; /* Фиксированная ширина */
-            height: 130px; /* Фиксированная высота равная ширине */
-            border-radius: 50%; /* Делает круг */
-            object-fit: cover; /* Обрезает фото, чтобы оно не сплющивалось внутри круга */
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%; 
+            object-fit: cover; 
             border: 3px solid #00aff0; 
             box-shadow: 0 0 20px rgba(0, 175, 240, 0.6);
             margin-bottom: 25px;
-            display: block; /* Убираем артефакты строчных элементов */
+            display: block; 
         }
 
         /* Имя модели */
         .name {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: 1px;
@@ -115,7 +115,7 @@
             color: #e0e0e0;
             margin-bottom: 30px;
             line-height: 1.6;
-            min-height: 72px; /* Удерживает кнопки на одном уровне */
+            min-height: 72px; /* Удерживает кнопки на одном уровне на ПК */
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
@@ -124,83 +124,111 @@
             display: block;
             text-decoration: none;
             color: white;
-            background: linear-gradient(90deg, #00aff0, #008ec2); /* Фирменный цвет OF */
+            background: linear-gradient(90deg, #ff007f, #00aff0); 
             padding: 16px 20px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 20px rgba(0, 175, 240, 0.4);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 0, 127, 0.4);
             transition: all 0.3s ease;
-            animation: pulse 2.5s infinite;
-            width: 100%; /* Кнопка на всю ширину карточки */
+            animation: pulse 2.2s infinite; 
+            width: 100%; 
         }
 
-        /* Наведение на кнопку */
         .cta-button:hover {
-            background: linear-gradient(90deg, #008ec2, #00aff0);
-            box-shadow: 0 0 25px rgba(0, 175, 240, 0.9);
-            transform: scale(1.03);
+            background: linear-gradient(90deg, #00aff0, #ff007f);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.9);
+            transform: scale(1.04);
         }
 
-        /* Анимация постоянного мягкого призыва к действию (пульсация кнопки) */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 175, 240, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 175, 240, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 175, 240, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.7); }
+            70% { box-shadow: 0 0 0 12px rgba(255, 0, 127, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
         }
 
-        /* Оптимизация отступов для мобильных экранов */
+        /* УЛЬТРА-АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (Экран до 480px)
+          Выстраиваем всех 3 девушек в один горизонтальный ряд на одном экране
+        */
         @media (max-width: 480px) {
             body {
-                padding: 30px 15px;
+                padding: 15px 8px;
+                justify-content: center; /* Строго по центру экрана мобильного */
             }
             h1 {
-                font-size: 1.7rem;
-                margin-bottom: 35px;
+                font-size: 1.35rem;
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }
+            .cards-container {
+                flex-wrap: nowrap; /* ЗАПРЕЩАЕМ перенос на новую строку */
+                gap: 6px; /* Минимальный зазор, чтобы всё влезло */
+                align-items: stretch; /* Делаем все карточки строго одной высоты */
             }
             .card {
-                padding: 30px 20px;
+                padding: 12px 6px;
+                border-radius: 16px;
+                max-width: 33.33%; /* Каждая карточка занимает ровно треть ширины */
+                justify-content: space-between; /* Прижимает кнопку к самому низу карточки */
             }
             .profile-img {
-                width: 110px; /* Чуть меньше на мобильных */
-                height: 110px;
+                width: 68px; /* Уменьшаем круглые фото для мобильного */
+                height: 68px;
+                border-width: 2px;
+                margin-bottom: 10px;
+                box-shadow: 0 0 10px rgba(0, 175, 240, 0.5);
+            }
+            .name {
+                font-size: 0.8rem; /* Компактный шрифт для имен */
+                margin-bottom: 6px;
+                line-height: 1.1;
+                word-wrap: break-word;
+            }
+            .bait-text {
+                font-size: 0.65rem; /* Микро-текст байта, чтобы не занимал место */
+                margin-bottom: 12px;
+                line-height: 1.2;
+                min-height: auto; /* Сбрасываем ПК настройки */
+                flex-grow: 1; /* Растягивает блок, выравнивая кнопки */
+            }
+            .cta-button {
+                padding: 10px 2px;
+                font-size: 0.6rem; /* Компактный и агрессивный текст на кнопке */
+                letter-spacing: 0px;
+                border-radius: 20px;
+                white-space: normal; /* Разрешаем тексту на кнопке переноситься на 2 строки */
+                line-height: 1.1;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>They Are Waiting For You... </h1>
+    <h1>They Are Waiting For You...</h1>
 
     <div class="cards-container">
         
-        <!-- Карточка 1 -->
         <div class="card">
-            <!-- ДОБАВЛЕН КЛАСС profile-img -->
             <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true" alt="ava_doll" class="profile-img">
             <div class="name">Ava 💕</div>
-            <p class="bait-text">I'm feeling naughty tonight. Unlock my most private secrets and let's play... 🔞</p>
+            <p class="bait-text">I'm feeling naughty tonight. Unlock my private secrets... 🔞</p>
             <a href="https://onlyfans.com/ava_doll/c336" target="_blank" class="cta-button">ENTER MY ROOM 🔞</a>
         </div>
 
-        <!-- Карточка 2 -->
         <div class="card">
-            <!-- ДОБАВЛЕН КЛАСС profile-img -->
             <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true" alt="architect.mari" class="profile-img">
-            <div class="name">💗Mariposa💗</div>
-            <p class="bait-text">Good girls go to heaven, but I can take you somewhere much better. Don't tell anyone what you see... 🤫</p>
-            <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">WATCH UNCENSORED 💦</a>
+            <div class="name">Mariposa 💗</div>
+            <p class="bait-text">Good girls go to heaven, I can take you deeper... 🤫</p>
+            <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">WATCH RAW 💦</a>
         </div>
 
-        <!-- Карточка 3 -->
         <div class="card">
-            <!-- ДОБАВЛЕН КЛАСС profile-img -->
             <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true" alt="miss.andrea" class="profile-img">
-            <div class="name">Andrea💃Luna</div>
-            <p class="bait-text">I saved the best content just for you. Waiting for you in my DMs right now 💌</p>
-            <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">TEXT ME PRIVATELY 💌</a>
+            <div class="name">Andrea 💃</div>
+            <p class="bait-text">I saved the best content just for you. Waiting in DMs 💌</p>
+            <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">TEXT ME 💌</a>
         </div>
 
     </div>
