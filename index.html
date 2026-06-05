@@ -5,164 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive VIP Access</title>
     <style>
-        /* Общие настройки страницы */
+        /* Сброс стандартных отступов */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            /* Темный анимированный градиентный фон */
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #000000);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            /* Подключение твоего стильного фона */
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Затемняющий слой поверх фона для идеальной читаемости */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55); /* Корректируй прозрачность тут (0.55 = 55%) */
+            z-index: -1;
         }
 
-        /* Заголовок сайта */
+        /* Главный заголовок сайта */
         h1 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 175, 240, 0.6);
+            font-weight: 800;
         }
 
-        /* Контейнер для карточек. Адаптивный: колонка на телефоне, в ряд на ПК */
+        /* Контейнер для карточек. На ПК — в ряд, на смартфонах — автоматически в колонку */
         .cards-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 35px;
             width: 100%;
             max-width: 1200px;
         }
 
-        /* Карточка девушки (эффект матового стекла) */
+        /* Стильная карточка с эффектом матового стекла (Glassmorphism) */
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 35px 25px;
             width: 100%;
-            max-width: 350px;
+            max-width: 340px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border 0.3s ease;
         }
 
+        /* Эффект при наведении мышки (на ПК) */
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 175, 240, 0.5);
         }
 
-        /* Фото профиля */
+        /* Аватарка девушки с неоновым OnlyFans-голубым свечением */
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #ff007f; /* Неоновая обводка */
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
-            margin-bottom: 20px;
-        }
-
-        /* Имя */
-        .name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Байт-текст */
-        .bait-text {
-            font-size: 1rem;
-            color: #dcdcdc;
+            border: 3px solid #00aff0; 
+            box-shadow: 0 0 20px rgba(0, 175, 240, 0.6);
             margin-bottom: 25px;
-            line-height: 1.5;
         }
 
-        /* Кнопка */
+        /* Имя модели */
+        .name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Английский байт-текст */
+        .bait-text {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            min-height: 72px; /* Удерживает кнопки на одном уровне */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
+
+        /* Ссылки-кнопки */
         .cta-button {
-            display: inline-block;
+            display: block;
             text-decoration: none;
             color: white;
-            background: linear-gradient(90deg, #ff007f, #7000ff);
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: bold;
+            background: linear-gradient(90deg, #00aff0, #008ec2); /* Фирменный цвет OF */
+            padding: 16px 20px;
+            border-radius: 50px;
+            font-weight: 700;
             font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 20px rgba(0, 175, 240, 0.4);
             transition: all 0.3s ease;
-            width: 100%;
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s infinite;
         }
 
+        /* Наведение на кнопку */
         .cta-button:hover {
-            background: linear-gradient(90deg, #7000ff, #ff007f);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
-            transform: scale(1.05);
+            background: linear-gradient(90deg, #008ec2, #00aff0);
+            box-shadow: 0 0 25px rgba(0, 175, 240, 0.9);
+            transform: scale(1.03);
         }
 
-        /* Пульсация кнопки для привлечения внимания */
+        /* Анимация постоянного мягкого призыва к действию (пульсация кнопки) */
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 0, 127, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 175, 240, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 175, 240, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 175, 240, 0); }
+        }
+
+        /* Оптимизация отступов для мобильных экранов */
+        @media (max-width: 480px) {
+            body {
+                padding: 30px 15px;
+            }
+            h1 {
+                font-size: 1.7rem;
+                margin-bottom: 35px;
+            }
+            .card {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Choose Your Fantasy</h1>
+    <h1>Choose Your Access</h1>
 
     <div class="cards-container">
         
-        <!-- ДЕВУШКА 1 -->
         <div class="card">
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 1 -->
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 1" class="profile-img">
-            <div class="name">Lexi</div>
+            <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true">
+            <div class="name">ava_doll</div>
             <p class="bait-text">I'm feeling naughty tonight. Unlock my most private secrets and let's play... 🔞</p>
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
-            <a href="#" class="cta-button">Reveal Everything</a>
+            <a href="https://onlyfans.com/ava_doll/c336" target="_blank" class="cta-button">Reveal Everything</a>
         </div>
 
-        <!-- ДЕВУШКА 2 -->
         <div class="card">
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 2 -->
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 2" class="profile-img">
-            <div class="name">Mia</div>
+            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true">
+            <div class="name">architect.mari</div>
             <p class="bait-text">Good girls go to heaven, but I can take you somewhere much better. Don't tell anyone what you see... 🤫</p>
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
-            <a href="#" class="cta-button">Get VIP Access</a>
+            <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">Get VIP Access</a>
         </div>
 
-        <!-- ДЕВУШКА 3 -->
         <div class="card">
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ФОТО 3 -->
-            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Model 3" class="profile-img">
-            <div class="name">Chloe</div>
+            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true">
+            <div class="name">miss.andrea</div>
             <p class="bait-text">I saved the best content just for you. Waiting for you in my DMs right now 💌</p>
-            <!-- СЮДА ВСТАВЛЯЙ ССЫЛКУ НА ЕЕ ОНЛИФАНС (вместо #) -->
-            <a href="#" class="cta-button">Join the Lounge</a>
+            <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">Join the Lounge</a>
         </div>
 
     </div>
