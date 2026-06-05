@@ -25,11 +25,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Центрируем всё строго по центру экрана */
             padding: 40px 20px;
             position: relative;
             z-index: 1;
-            overflow-x: hidden; /* Защита от кривой прокрутки всей страницы */
         }
 
         /* Затемняющий слой поверх фона для идеальной читаемости */
@@ -55,7 +54,7 @@
             font-weight: 800;
         }
 
-        /* Контейнер для карточек. На ПК — красивый ряд */
+        /* Контейнер для карточек. На ПК — в ряд */
         .cards-container {
             display: flex;
             flex-wrap: wrap;
@@ -74,12 +73,20 @@
             border-radius: 24px;
             padding: 35px 25px;
             width: 100%;
-            max-width: 320px;
+            max-width: 340px;
             text-align: center;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* На ПК структура внутри карточки идет сверху вниз */
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         /* Эффект при наведении мышки (на ПК) */
@@ -103,7 +110,7 @@
 
         /* Имя модели */
         .name {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: 1px;
@@ -150,64 +157,67 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 0, 127, 0); }
         }
 
-        /* ЭКСКЛЮЗИВНЫЕ СТИЛИ ДЛЯ ТЕЛЕФОНОВ (Горизонтальный премиум-свайп)
+        /* УЛЬТРА-ОПТИМИЗАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ:
+          Все 3 девушки видны СРАЗУ на одном экране, крупные элементы, сочные кнопки, без свайпов!
         */
         @media (max-width: 480px) {
             body {
-                padding: 30px 0; /* Убираем боковые отступы у экрана, чтобы карточки могли уходить за край */
+                padding: 15px 12px;
+                justify-content: center;
             }
             
             h1 {
-                font-size: 1.6rem;
-                margin-bottom: 30px;
-                padding: 0 20px; /* Возвращаем отступ только для заголовка */
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+                letter-spacing: 1px;
             }
 
             .cards-container {
-                flex-wrap: nowrap; /* Строго запрещаем перенос карточек вниз */
-                overflow-x: auto;  /* Включаем горизонтальную прокрутку */
-                justify-content: flex-start;
-                padding: 0 25px 25px 25px; /* Отступы по бокам, чтобы первая карточка стояла ровно */
-                gap: 20px;
-                
-                /* Плавный мобильный скролл (scroll-snapping), карточка сама магнититься по центру экрана */
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            /* Скрываем некрасивую полосу прокрутки (скроллбар) на телефонах */
-            .cards-container::-webkit-scrollbar {
-                display: none;
-            }
-            .cards-container {
-                -ms-overflow-style: none;  
-                scrollbar-width: none;  
+                flex-direction: column; /* Карточки выстраиваются сверху вниз */
+                gap: 10px; /* Минимальный зазор для экономии места */
+                width: 100%;
             }
 
             .card {
-                flex: 0 0 82%; /* Каждая карточка занимает 82% ширины экрана — крупно и сочно! */
-                max-width: 82%;
-                scroll-snap-align: center; /* Центрирование при свайпе */
-                padding: 30px 20px;
+                max-width: 100%; /* Карточка растягивается на всю ширину экрана смартфона */
+                padding: 12px 15px; /* Компактные внутренние отступы */
+                border-radius: 18px;
+            }
+
+            /* Перестраиваем аватарку и текст в один горизонтальный ряд на мобилках */
+            .card-top {
+                flex-direction: row; 
+                text-align: left;
+                gap: 15px;
+                margin-bottom: 10px;
+                width: 100%;
+                justify-content: flex-start;
             }
 
             .profile-img {
-                width: 115px; /* Возвращаем крупный красивый размер фото */
-                height: 115px;
+                width: 65px; /* Идеальный крупный размер фото, который не жмет экран */
+                height: 65px;
+                margin-bottom: 0; /* Убираем нижний отступ */
+                border-width: 2px;
+                box-shadow: 0 0 12px rgba(0, 175, 240, 0.5);
             }
 
             .name {
-                font-size: 1.3rem;
+                font-size: 1.15rem;
+                margin-bottom: 2px;
             }
 
             .bait-text {
-                font-size: 0.85rem;
-                min-height: auto; /* Сбрасываем ограничения высоты */
+                font-size: 0.8rem;
+                min-height: auto; /* Убираем пустые пространства */
+                margin-bottom: 0;
+                line-height: 1.2;
             }
 
             .cta-button {
-                padding: 14px 15px;
-                font-size: 0.9rem;
+                padding: 12px 15px; /* Жирная, удобная кнопка во всю ширину */
+                font-size: 0.85rem;
+                letter-spacing: 0.5px;
             }
         }
     </style>
@@ -219,23 +229,35 @@
     <div class="cards-container">
         
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true" alt="ava_doll" class="profile-img">
-            <div class="name">Ava 💕</div>
-            <p class="bait-text">I'm feeling naughty tonight. Unlock my most private secrets and let's play... 🔞</p>
+            <div class="card-top">
+                <img src="https://github.com/deadforlov/ttiks/blob/main/%D0%A4%D0%BE%D1%82%D0%BE%2004.10.2025,%2021%2019%2052%20(6).jpg?raw=true" alt="ava_doll" class="profile-img">
+                <div class="card-info">
+                    <div class="name">Ava 💕</div>
+                    <p class="bait-text">I'm feeling naughty tonight. Unlock my private secrets... 🔞</p>
+                </div>
+            </div>
             <a href="https://onlyfans.com/ava_doll/c336" target="_blank" class="cta-button">ENTER MY ROOM 🔞</a>
         </div>
 
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true" alt="architect.mari" class="profile-img">
-            <div class="name">💗Mariposa💗</div>
-            <p class="bait-text">Good girls go to heaven, but I can take you somewhere much better. Don't tell anyone what you see... 🤫</p>
+            <div class="card-top">
+                <img src="https://github.com/deadforlov/ttiks/blob/main/photo_34@27-10-2024_22-11-08.jpg?raw=true" alt="architect.mari" class="profile-img">
+                <div class="card-info">
+                    <div class="name">💗Mariposa💗</div>
+                    <p class="bait-text">Good girls go to heaven, but I can take you somewhere better... 🤫</p>
+                </div>
+            </div>
             <a href="https://onlyfans.com/architect.mari/c770" target="_blank" class="cta-button">WATCH UNCENSORED 💦</a>
         </div>
 
         <div class="card">
-            <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true" alt="miss.andrea" class="profile-img">
-            <div class="name">Andrea💃Luna</div>
-            <p class="bait-text">I saved the best content just for you. Waiting for you in my DMs right now 💌</p>
+            <div class="card-top">
+                <img src="https://github.com/deadforlov/ttiks/blob/main/photo_2025-08-22_10-28-19%20(2).jpg?raw=true" alt="miss.andrea" class="profile-img">
+                <div class="card-info">
+                    <div class="name">Andrea💃Luna</div>
+                    <p class="bait-text">I saved the best content just for you. Waiting in my DMs right now 💌</p>
+                </div>
+            </div>
             <a href="https://onlyfans.com/miss.andrea/c1897" target="_blank" class="cta-button">TEXT ME PRIVATELY 💌</a>
         </div>
 
